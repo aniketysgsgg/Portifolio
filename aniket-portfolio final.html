@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aniket Kerketta – Digital Marketing Executive</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0d0d0d; --paper: #f5f0e8; --accent: #e85d04;
+  --accent2: #1a6b3c; --mid: #6b6560;
+  --line: rgba(13,13,13,0.12); --white: #ffffff;
+  --pad: clamp(20px, 5vw, 60px);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--paper); color: var(--ink); overflow-x: hidden; }
+
+@media (pointer: fine) {
+  body { cursor: none; }
+  .cursor { width: 10px; height: 10px; background: var(--accent); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; mix-blend-mode: multiply; }
+  .cursor-ring { width: 36px; height: 36px; border: 1.5px solid var(--accent); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; transition: transform 0.16s ease, width 0.2s, height 0.2s; mix-blend-mode: multiply; }
+}
+@media (pointer: coarse) { .cursor, .cursor-ring { display: none; } }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; justify-content: space-between; align-items: center; padding: 18px var(--pad); background: rgba(245,240,232,0.94); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid transparent; transition: border-color 0.3s; }
+nav.scrolled { border-color: var(--line); }
+.nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; letter-spacing: -0.5px; color: var(--ink); text-decoration: none; }
+.nav-links { display: flex; gap: 32px; }
+.nav-links a {
+  font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink); text-decoration: none; transition: color 0.2s;
+  position: relative; padding-bottom: 2px;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: 0; left: 0;
+  width: 0; height: 1.5px; background: var(--accent);
+  transition: width 0.25s ease;
+}
+.nav-links a:hover { color: var(--accent); }
+.nav-links a:hover::after { width: 100%; }
+.nav-links a.active { color: var(--accent); }
+.nav-links a.active::after { width: 100%; }
+.hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--ink); transition: transform 0.3s, opacity 0.3s; }
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.mobile-menu { display: none; position: fixed; top: 57px; left: 0; right: 0; background: var(--paper); border-bottom: 1px solid var(--line); flex-direction: column; z-index: 199; padding: 16px var(--pad); gap: 0; }
+.mobile-menu.open { display: flex; }
+.mobile-menu a { font-size: 14px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); text-decoration: none; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.mobile-menu a:last-child { border-bottom: none; }
+@media (max-width: 680px) { .nav-links { display: none; } .hamburger { display: flex; } }
+
+/* HERO */
+.hero { min-height: 100svh; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; }
+.hero-left { padding: 130px var(--pad) 80px; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 2; }
+h1 { font-family: 'Syne', sans-serif; font-size: clamp(42px, 6.5vw, 92px); font-weight: 800; line-height: 0.92; letter-spacing: clamp(-1px, -0.03em, -3px); color: var(--ink); margin-bottom: 24px; }
+h1 span { color: var(--accent); }
+.hero-desc { font-size: clamp(14px, 1.5vw, 16px); line-height: 1.75; color: var(--mid); max-width: 400px; margin-bottom: 40px; font-weight: 300; }
+.hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+
+/* BUTTONS */
+.btn-primary, .btn-outline, .btn-resume {
+  padding: 13px 26px; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 12px;
+  letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
+  transition: all 0.2s; white-space: nowrap; display: inline-block;
+}
+.btn-primary { background: var(--ink); color: var(--paper); border: 1.5px solid var(--ink); }
+.btn-primary:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
+.btn-outline { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); }
+.btn-outline:hover { background: var(--ink); color: var(--paper); transform: translateY(-2px); }
+.btn-resume { background: var(--accent); color: var(--paper); border: 1.5px solid var(--accent); cursor: pointer; }
+.btn-resume:hover { background: transparent; color: var(--accent); transform: translateY(-2px); }
+
+/* HERO RIGHT */
+.hero-right { position: relative; display: flex; align-items: center; justify-content: center; }
+.hero-graphic { position: absolute; right: -80px; top: 50%; transform: translateY(-50%); width: 500px; height: 500px; background: var(--ink); border-radius: 50% 50% 50% 0; opacity: 0.04; pointer-events: none; }
+.metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; padding: 130px 40px 80px 16px; align-content: center; z-index: 2; position: relative; width: 100%; }
+.metric-card {
+  background: var(--white); border: 1px solid var(--line);
+  padding: 22px 18px; position: relative; overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transform-style: preserve-3d;
+}
+.metric-card:hover { box-shadow: 0 12px 40px rgba(13,13,13,0.1); }
+.metric-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+.metric-card:hover::before { transform: scaleX(1); }
+.metric-card:nth-child(2) { margin-top: 28px; }
+.metric-card:nth-child(4) { margin-top: -28px; }
+.metric-num { font-family: 'Syne', sans-serif; font-size: clamp(30px, 3.5vw, 44px); font-weight: 800; letter-spacing: -2px; line-height: 1; margin-bottom: 5px; }
+.metric-num span { color: var(--accent); font-size: 0.65em; }
+.metric-label { font-size: 11px; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; color: var(--mid); }
+
+@media (max-width: 768px) {
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-left { padding: 100px 20px 36px; }
+  .hero-right { padding: 0 20px 52px; }
+  .hero-graphic { display: none; }
+  .metrics-grid { grid-template-columns: 1fr 1fr; gap: 10px; padding: 0; }
+  .metric-card:nth-child(2), .metric-card:nth-child(4) { margin-top: 0; }
+}
+
+/* DIVIDER */
+.section-divider { width: 100%; height: 1px; background: var(--line); }
+
+/* SECTIONS */
+section { padding: clamp(56px, 8vw, 100px) var(--pad); }
+.section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: clamp(36px, 5vw, 64px); flex-wrap: wrap; }
+.section-num { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 600; color: var(--accent); letter-spacing: 0.1em; }
+h2 { font-family: 'Syne', sans-serif; font-size: clamp(26px, 4vw, 52px); font-weight: 800; letter-spacing: -1.5px; line-height: 1; color: var(--ink); }
+h2 em { font-style: italic; color: var(--mid); font-weight: 400; }
+
+/* ABOUT */
+.about-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: clamp(32px, 5vw, 80px); align-items: start; }
+.about-left { position: sticky; top: 90px; }
+.about-name-big { font-family: 'Syne', sans-serif; font-size: clamp(34px, 5vw, 72px); font-weight: 800; letter-spacing: -2px; line-height: 0.92; color: var(--ink); margin-bottom: 18px; }
+.about-contact { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+.about-contact a { font-size: 13px; color: var(--mid); text-decoration: none; font-weight: 400; display: flex; align-items: center; gap: 8px; transition: color 0.2s, gap 0.2s; }
+.about-contact a::before { content: '→'; font-size: 11px; color: var(--accent); }
+.about-contact a:hover { color: var(--accent); gap: 14px; }
+.about-right p { font-size: clamp(14px, 1.5vw, 16px); line-height: 1.8; color: var(--mid); font-weight: 300; margin-bottom: 16px; }
+.about-right p strong { color: var(--ink); font-weight: 500; }
+.highlight-strip { border-left: 3px solid var(--accent); padding: 16px 20px; background: rgba(232,93,4,0.04); margin: 24px 0; }
+.highlight-strip p { margin: 0; font-size: 14px; color: var(--ink) !important; font-weight: 400 !important; line-height: 1.7; }
+@media (max-width: 700px) { .about-grid { grid-template-columns: 1fr; gap: 32px; } .about-left { position: static; } }
+
+/* JOB FIT */
+.job-fit-wrap { padding: 0 var(--pad) clamp(48px, 6vw, 80px); background: var(--paper); }
+.job-fit { background: #ece7dd; border: 1px solid var(--line); padding: clamp(24px, 4vw, 56px); }
+.job-fit-header { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; flex-wrap: wrap; }
+.job-fit-badge { background: var(--accent2); color: white; font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 7px 14px; white-space: nowrap; }
+.job-fit-title { font-family: 'Syne', sans-serif; font-size: clamp(17px, 2vw, 22px); font-weight: 800; letter-spacing: -0.3px; }
+.fit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.fit-item {
+  display: flex; align-items: flex-start; gap: 12px; padding: 16px 14px;
+  background: var(--white); border: 1px solid var(--line);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.fit-item:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(13,13,13,0.07); }
+.fit-check { width: 20px; height: 20px; background: var(--accent2); color: white; font-size: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+.fit-text strong { font-size: 14px; font-weight: 600; display: block; margin-bottom: 5px; }
+.fit-text p { font-size: 13px; color: var(--mid); line-height: 1.6; }
+@media (max-width: 560px) { .fit-grid { grid-template-columns: 1fr; } }
+
+/* EXPERIENCE */
+#experience { background: var(--ink); color: var(--paper); }
+#experience h2 { color: var(--paper); }
+#experience h2 em { color: rgba(245,240,232,0.3); }
+#experience .section-num { color: var(--accent); }
+.exp-list { display: flex; flex-direction: column; }
+.exp-item { display: grid; grid-template-columns: 200px 1fr; gap: 32px; padding: 40px 0; border-bottom: 1px solid rgba(245,240,232,0.08); }
+.exp-item:first-child { border-top: 1px solid rgba(245,240,232,0.08); }
+.exp-date { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+.exp-company { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; color: rgba(245,240,232,0.82); margin-bottom: 4px; }
+.exp-location { font-size: 11px; color: rgba(245,240,232,0.28); font-weight: 300; }
+.exp-title { font-family: 'Syne', sans-serif; font-size: clamp(16px, 2vw, 21px); font-weight: 700; color: var(--paper); margin-bottom: 16px; letter-spacing: -0.3px; }
+.exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.exp-bullets li { font-size: 13px; font-weight: 300; color: rgba(245,240,232,0.6); line-height: 1.65; padding-left: 16px; position: relative; }
+.exp-bullets li::before { content: '–'; position: absolute; left: 0; color: var(--accent); }
+.exp-bullets li strong { color: rgba(245,240,232,0.88); font-weight: 500; }
+@media (max-width: 620px) { .exp-item { grid-template-columns: 1fr; gap: 8px; padding: 28px 0; } .exp-meta { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; } .exp-date { margin-bottom: 0; } }
+
+/* SKILLS */
+.skills-masonry { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.skill-block { background: var(--white); padding: clamp(22px, 3vw, 36px) clamp(18px, 2.5vw, 30px); border: 1px solid var(--line); position: relative; overflow: hidden; transition: all 0.25s; }
+.skill-block::after { content: ''; position: absolute; inset: 0; background: var(--ink); transform: translateY(100%); transition: transform 0.3s ease; z-index: 0; }
+.skill-block:hover::after { transform: translateY(0); }
+.skill-block-icon { font-size: 24px; margin-bottom: 12px; display: block; position: relative; z-index: 1; }
+.skill-block-title { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: -0.3px; color: var(--ink); margin-bottom: 12px; position: relative; z-index: 1; transition: color 0.3s; }
+.skill-tags { display: flex; flex-wrap: wrap; gap: 5px; position: relative; z-index: 1; }
+.skill-tags span { font-size: 11px; font-weight: 500; letter-spacing: 0.04em; padding: 3px 8px; border: 1px solid var(--line); color: var(--mid); transition: all 0.3s; }
+.skill-block:hover .skill-block-title { color: var(--paper); }
+.skill-block:hover .skill-tags span { color: rgba(245,240,232,0.65); border-color: rgba(245,240,232,0.18); }
+
+/* Mobile tap state */
+.skill-block.tapped::after { transform: translateY(0); }
+.skill-block.tapped .skill-block-title { color: var(--paper); }
+.skill-block.tapped .skill-tags span { color: rgba(245,240,232,0.65); border-color: rgba(245,240,232,0.18); }
+@media (max-width: 720px) { .skills-masonry { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 420px) { .skills-masonry { grid-template-columns: 1fr; } }
+
+/* SELECTED WORK */
+.work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+.work-card {
+  background: rgba(245,240,232,0.04); border: 1px solid rgba(245,240,232,0.08);
+  padding: clamp(28px, 4vw, 48px); display: flex; flex-direction: column; gap: 16px;
+  transition: background 0.3s, border-color 0.3s, transform 0.3s;
+  position: relative; overflow: hidden;
+}
+.work-card::before {
+  content: ''; position: absolute; top: 0; left: -100%;
+  width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(245,240,232,0.04), transparent);
+  transition: left 0.6s ease; pointer-events: none;
+}
+.work-card:hover::before { left: 150%; }
+.work-card:hover { background: rgba(245,240,232,0.08); border-color: rgba(245,240,232,0.2); transform: translateY(-3px); }
+.work-card-top { display: flex; align-items: center; gap: 12px; }
+.work-rank {
+  font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800;
+  color: var(--accent); letter-spacing: -1px; line-height: 1;
+}
+.work-tag {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(245,240,232,0.4); border: 1px solid rgba(245,240,232,0.12);
+  padding: 4px 10px;
+}
+.work-title {
+  font-family: 'Syne', sans-serif; font-size: clamp(20px, 2.5vw, 28px);
+  font-weight: 800; color: var(--paper); letter-spacing: -0.5px; line-height: 1.1;
+}
+.work-url { font-size: 12px; color: var(--accent); font-weight: 400; letter-spacing: 0.03em; }
+.work-keywords { display: flex; flex-wrap: wrap; gap: 6px; }
+.work-keywords span {
+  font-size: 12px; font-weight: 500; color: rgba(245,240,232,0.5);
+  border: 1px solid rgba(245,240,232,0.12); padding: 5px 11px;
+  font-style: italic;
+}
+.work-desc { font-size: 14px; font-weight: 300; color: rgba(245,240,232,0.58); line-height: 1.75; flex: 1; }
+.work-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--accent); text-decoration: none;
+  border-bottom: 1px solid rgba(232,93,4,0.3); padding-bottom: 2px;
+  width: fit-content; transition: border-color 0.2s, gap 0.2s;
+}
+.work-link:hover { border-color: var(--accent); gap: 10px; }
+.work-stats {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 2px; margin-top: 4px;
+}
+.work-stat {
+  background: rgba(232,93,4,0.08); border: 1px solid rgba(232,93,4,0.15);
+  padding: 12px 10px; text-align: center;
+}
+.work-stat-num {
+  font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800;
+  color: var(--accent); letter-spacing: -1px; line-height: 1; margin-bottom: 4px;
+}
+.work-stat-label {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.05em;
+  text-transform: uppercase; color: rgba(245,240,232,0.45); line-height: 1.3;
+}
+.work-verified {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+  color: rgba(245,240,232,0.3); margin-top: -4px;
+}
+.work-serp-wrap { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+.work-serp-label {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(245,240,232,0.3);
+}
+.work-serp-img {
+  width: 100%; border: 1px solid rgba(245,240,232,0.08);
+  border-radius: 3px; opacity: 0.82; transition: opacity 0.25s;
+}
+.work-serp-img:hover { opacity: 1; }
+@media (max-width: 640px) {
+  .work-grid { grid-template-columns: 1fr; }
+  .work-stats { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* PROJECTS */
+#projects { background: var(--paper); }
+.projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+.project-card {
+  background: var(--white); border: 1px solid var(--line);
+  padding: clamp(24px, 3.5vw, 44px); display: flex; flex-direction: column; gap: 14px;
+  position: relative; overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.project-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--accent); transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.project-card:hover::before { transform: scaleX(1); }
+.project-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(13,13,13,0.09); }
+.project-tag {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--accent); border: 1px solid rgba(232,93,4,0.25);
+  padding: 4px 10px; width: fit-content;
+}
+.project-title {
+  font-family: 'Syne', sans-serif; font-size: clamp(18px, 2.2vw, 24px);
+  font-weight: 800; letter-spacing: -0.4px; line-height: 1.1; color: var(--ink);
+}
+.project-desc {
+  font-size: 13px; font-weight: 300; color: var(--mid); line-height: 1.75; flex: 1;
+}
+.project-outcomes { display: flex; flex-wrap: wrap; gap: 6px; }
+.project-outcome {
+  font-size: 12px; font-weight: 500; color: var(--ink);
+  background: rgba(232,93,4,0.07); border: 1px solid rgba(232,93,4,0.15);
+  padding: 5px 11px;
+}
+.project-tools { display: flex; flex-wrap: wrap; gap: 5px; }
+.project-tool {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.04em;
+  padding: 3px 9px; border: 1px solid var(--line); color: var(--mid);
+}
+.project-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink); text-decoration: none;
+  border-bottom: 1.5px solid var(--line); padding-bottom: 2px; width: fit-content;
+  transition: color 0.2s, border-color 0.2s, gap 0.2s;
+}
+.project-link:hover { color: var(--accent); border-color: var(--accent); gap: 10px; }
+@media (max-width: 640px) { .projects-grid { grid-template-columns: 1fr; } }
+
+/* EDUCATION */
+.edu-block { display: grid; grid-template-columns: 1fr 1fr; }
+.edu-left { background: var(--ink); padding: clamp(36px, 5vw, 60px); color: var(--paper); }
+.edu-label { font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+.edu-degree { font-family: 'Syne', sans-serif; font-size: clamp(20px, 2.5vw, 28px); font-weight: 800; letter-spacing: -0.5px; line-height: 1.15; margin-bottom: 12px; color: var(--paper); }
+.edu-school { font-size: 13px; font-weight: 300; color: rgba(245,240,232,0.5); line-height: 1.5; }
+.edu-year { font-family: 'Syne', sans-serif; font-size: clamp(44px, 6vw, 72px); font-weight: 800; letter-spacing: -3px; color: rgba(245,240,232,0.06); margin-top: 24px; line-height: 1; }
+.edu-right { background: var(--white); padding: clamp(36px, 5vw, 60px); display: flex; flex-direction: column; justify-content: center; }
+.edu-right-title { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700; margin-bottom: 18px; color: var(--ink); }
+.ai-tools-list { display: flex; flex-wrap: wrap; gap: 7px; }
+.ai-tag { padding: 7px 14px; background: var(--paper); border: 1px solid var(--line); font-size: 12px; font-weight: 500; color: var(--ink); }
+@media (max-width: 600px) { .edu-block { grid-template-columns: 1fr; } }
+
+/* CONTACT */
+#contact { background: var(--accent); color: var(--paper); text-align: center; padding: clamp(72px, 10vw, 120px) var(--pad); }
+#contact h2 { color: var(--paper); margin-bottom: 14px; }
+#contact p { font-size: clamp(13px, 1.3vw, 15px); font-weight: 300; color: rgba(245,240,232,0.55); max-width: 380px; margin: 0 auto 36px; line-height: 1.7; letter-spacing: 0.01em; }
+.contact-links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.contact-btn { padding: 13px 28px; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; cursor: pointer; }
+.contact-btn.solid {
+  background: var(--paper); color: var(--ink); border: none;
+  animation: pulse-btn 2.5s ease-in-out infinite;
+}
+.contact-btn.solid:hover { background: var(--ink); color: var(--paper); animation: none; transform: translateY(-2px); }
+@keyframes pulse-btn {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(245,240,232,0.5); }
+  50% { box-shadow: 0 0 0 8px rgba(245,240,232,0); }
+}
+.contact-btn.outline { background: transparent; border: 2px solid rgba(245,240,232,0.4); color: var(--paper); }
+.contact-btn.outline:hover { background: var(--paper); color: var(--ink); }
+@media (max-width: 440px) { .contact-btn { width: 100%; text-align: center; } .contact-links { flex-direction: column; align-items: stretch; } }
+
+/* FOOTER */
+footer { background: var(--ink); padding: 24px var(--pad); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; }
+footer span { font-size: 11px; color: rgba(245,240,232,0.26); letter-spacing: 0.06em; }
+
+/* ABOUT CTA BUTTONS */
+.about-cta-btns { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+.about-cta-btn {
+  padding: 11px 22px; font-family: 'Syne', sans-serif; font-weight: 700;
+  font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+  text-decoration: none; transition: all 0.2s; white-space: nowrap;
+}
+.about-cta-btn.primary { background: var(--ink); color: var(--paper); border: 1.5px solid var(--ink); }
+.about-cta-btn.primary:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
+.about-cta-btn.whatsapp { background: transparent; color: #25d366; border: 1.5px solid #25d366; }
+.about-cta-btn.whatsapp:hover { background: #25d366; color: white; transform: translateY(-2px); }
+
+/* EDUCATION ADVANTAGE */
+.edu-advantage {
+  font-size: 13px; font-weight: 300; color: rgba(245,240,232,0.5);
+  line-height: 1.65; margin-top: 20px;
+  border-left: 2px solid var(--accent); padding-left: 12px;
+}
+
+/* WHATSAPP CONTACT BTN */
+.contact-btn.whatsapp-btn { background: #25d366; color: white; border: none; }
+.contact-btn.whatsapp-btn:hover { background: #1db954; transform: translateY(-2px); }
+
+/* SCREENSHOT ZOOM OVERLAY */
+.work-serp-img { cursor: zoom-in; transition: opacity 0.2s; }
+.work-serp-img:hover { opacity: 0.85; }
+
+.img-zoom-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(13,13,13,0.88);
+  z-index: 9000;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(16px, 4vw, 48px);
+}
+.img-zoom-overlay.open { display: flex; }
+.img-zoom-overlay img {
+  max-width: min(90vw, 860px);
+  max-height: 88vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border: 1px solid rgba(245,240,232,0.12);
+  box-shadow: 0 32px 80px rgba(0,0,0,0.7);
+  cursor: zoom-out;
+}
+.img-zoom-close {
+  position: fixed;
+  top: 18px;
+  right: 22px;
+  background: rgba(245,240,232,0.1);
+  border: 1px solid rgba(245,240,232,0.2);
+  color: var(--paper);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  z-index: 9001;
+}
+.img-zoom-close:hover { background: rgba(245,240,232,0.2); }
+.img-zoom-hint {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  color: rgba(245,240,232,0.35);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+
+
+/* BACK TO TOP */
+.back-to-top {
+  position: fixed; bottom: 28px; right: 28px; z-index: 500;
+  width: 44px; height: 44px;
+  background: var(--ink); color: var(--paper);
+  border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  box-shadow: 0 4px 20px rgba(13,13,13,0.2);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s, background 0.2s, transform 0.2s;
+}
+.back-to-top.visible { opacity: 1; pointer-events: all; }
+.back-to-top:hover { background: var(--accent); transform: translateY(-3px); }
+@media (max-width: 500px) { .back-to-top { bottom: 18px; right: 14px; width: 40px; height: 40px; font-size: 16px; } }
+
+/* ANIMATIONS */
+.animate { opacity: 0; transform: translateY(30px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.animate.visible { opacity: 1; transform: translateY(0); }
+/* Fallback: if JS doesn't fire, still show content */
+@media (prefers-reduced-motion: reduce) { .animate { opacity: 1; transform: none; } }
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--paper); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- SCREENSHOT ZOOM OVERLAY -->
+<div class="img-zoom-overlay" id="imgZoomOverlay">
+  <button class="img-zoom-close" id="imgZoomClose">&#x2715;</button>
+  <img id="imgZoomImg" src="" alt="">
+  <span class="img-zoom-hint">Click or press ESC to close</span>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">AK.</a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+    <a href="https://www.linkedin.com/in/aniketkerketta/" target="_blank" rel="noopener" style="color: var(--accent);">LinkedIn ↗</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#experience" onclick="closeMobile()">Experience</a>
+  <a href="#skills" onclick="closeMobile()">Skills</a>
+  <a href="#projects" onclick="closeMobile()">Projects</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+  <a href="https://www.linkedin.com/in/aniketkerketta/" target="_blank" rel="noopener" onclick="closeMobile()">LinkedIn ↗</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" style="padding:0;">
+  <div class="hero-left animate">
+    <h1>Digital<br>Mar<span>ke</span>ting<br>Executive.</h1>
+    <p class="hero-desc">SEO, Meta &amp; Google Ads, content strategy, and performance marketing — with 1+ years of results-driven experience across 50+ web properties.</p>
+    <div class="hero-cta">
+      <a href="#experience" class="btn-primary">View Experience</a>
+      <a href="/cdn-cgi/l/email-protection#10717e797b75647b75627b75646471222350777d71797c3e737f7d" class="btn-outline">Get in Touch</a>
+      <a href="Aniket_Kerketta_Resume.pdf" download="Aniket_Kerketta_Resume.pdf" class="btn-resume">&#8595; Resume</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-graphic"></div>
+    <div class="metrics-grid animate">
+      <div class="metric-card"><div class="metric-num">35<span>%</span></div><div class="metric-label">Organic Traffic Growth</div></div>
+      <div class="metric-card"><div class="metric-num">40<span>%</span></div><div class="metric-label">Keyword Ranking Lift</div></div>
+      <div class="metric-card"><div class="metric-num">50<span>+</span></div><div class="metric-label">Pages Optimised</div></div>
+      <div class="metric-card"><div class="metric-num">50<span>+</span></div><div class="metric-label">Quality Backlinks Built</div></div>
+    </div>
+  </div>
+</section>
+<div class="section-divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header animate"><span class="section-num">01</span><h2>About <em>me</em></h2></div>
+  <div class="about-grid">
+    <div class="about-left animate">
+      <div class="about-name-big">Aniket<br>Ker&shy;ket&shy;ta.</div>
+      <div class="about-contact">
+        <a href="tel:8305488536">+91 8305488536</a>
+        <a href="#" onclick="window.location.href='mailto:aniketkerketta23'+'@'+'gmail.com';return false;">aniketkerketta23&#64;gmail.com</a>
+        <a href="https://www.linkedin.com/in/aniketkerketta/" target="_blank" rel="noopener">LinkedIn Profile</a>
+        <a href="#">Delhi, India</a>
+      </div>
+    </div>
+    <div class="about-right animate">
+      <p>I'm a <strong>Digital Marketing Executive</strong> specialising in SEO, performance marketing, and content strategy. With a B.Tech in Computer Science, I bring a <strong>data-first, technically literate</strong> approach to every campaign.</p>
+      <p>At <strong>Virtu Information Technologies</strong>, I managed end-to-end SEO and social media for a growing client portfolio — driving <strong>35% organic traffic growth</strong> and a <strong>40% jump in keyword rankings</strong> across 50+ web pages within 12 months.</p>
+      <div class="highlight-strip"><p>Currently freelancing with global clients, working on AEO (Answer Engine Optimisation) projects targeting ChatGPT and Gemini — a forward-looking skill set that sets me apart in today's AI-first search landscape.</p></div>
+      <p>I'm excited about joining a fast-moving brand where I can combine conversion-focused copywriting, ROAS-driven paid campaigns, and SEO to accelerate digital growth.</p>
+      <div class="highlight-strip" style="border-left-color: var(--ink); background: rgba(13,13,13,0.04); margin-bottom: 0;">
+        <p style="font-size: 15px; font-weight: 600 !important; color: var(--ink) !important; letter-spacing: -0.2px;">"I don't just bring traffic — I turn it into rankings, leads, and measurable growth."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JOB FIT -->
+<div class="job-fit-wrap">
+  <div class="job-fit animate">
+    <div class="job-fit-header">
+      <div class="job-fit-badge">&#10003; Role Fit</div>
+      <div class="job-fit-title">Digital Marketing Executive – Why I'm the Right Fit</div>
+    </div>
+    <div class="fit-grid">
+      <div class="fit-item"><div class="fit-check">&#10003;</div><div class="fit-text"><strong>Conversion-focused copy (Social, Ads, Email)</strong><p>Created content calendars &amp; ad copy for Meta campaigns; experienced writing for Instagram, Facebook &amp; LinkedIn.</p></div></div>
+      <div class="fit-item"><div class="fit-check">&#10003;</div><div class="fit-text"><strong>Meta &amp; Google Ads – ROAS-driven</strong><p>Hands-on Meta Ads management (campaign structure, audience targeting, CPC/CTR analysis) and working knowledge of Google Ads formats.</p></div></div>
+      <div class="fit-item"><div class="fit-check">&#10003;</div><div class="fit-text"><strong>Content calendars &amp; campaign messaging</strong><p>Built and executed consistent posting schedules aligned with marketing goals and trending topics for multiple clients.</p></div></div>
+      <div class="fit-item"><div class="fit-check">&#10003;</div><div class="fit-text"><strong>SEO, tracking &amp; performance reports</strong><p>Full-stack SEO: keyword research, on-page optimisation, technical audits, backlink building &amp; KPI reporting via GA4.</p></div></div>
+      <div class="fit-item"><div class="fit-check">&#10003;</div><div class="fit-text"><strong>Creative &amp; communication skills</strong><p>Canva, Canva AI, Invideo AI — designed creatives and video content for social campaigns with measurable engagement lift.</p></div></div>
+      <div class="fit-item"><div class="fit-check">&#10003;</div><div class="fit-text"><strong>Immediate Joiner · Delhi-Based</strong><p>Currently based in Delhi and available to join immediately — no relocation or notice period required.</p></div></div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header animate"><span class="section-num">04</span><h2>Projects <em>&amp; campaigns</em></h2></div>
+  <div class="projects-grid">
+
+    <div class="project-card animate">
+      <div class="project-tag">SEO · Shopify E-Commerce</div>
+      <div class="project-title">Thedesignerbae – Shopify SEO Growth in 1 Week</div>
+      <p class="project-desc">Strategically optimised a Shopify e-commerce store (thedesignerbae.com), driving measurable organic growth within just one week. Improved the site's search visibility through targeted keyword strategy, on-page SEO, and Google Merchant Center setup — taking clicks from 0 to 26 and organic keyword rankings from 65 to 113 in 7 days.</p>
+      <div class="project-outcomes">
+        <span class="project-outcome">0 → 26 Clicks in 1 Week</span>
+        <span class="project-outcome">65 → 113 Keywords</span>
+        <span class="project-outcome">Health Score: 99</span>
+        <span class="project-outcome">254 Products Approved</span>
+      </div>
+      <div class="project-tools">
+        <span class="project-tool">Ahrefs</span><span class="project-tool">Google Merchant Center</span><span class="project-tool">Shopify</span><span class="project-tool">Search Console</span>
+      </div>
+      <a href="https://thedesignerbae.com" target="_blank" rel="noopener" class="project-link">Visit Site ↗</a>
+    </div>
+
+    <div class="project-card animate">
+      <div class="project-tag">Technical SEO · Site Health</div>
+      <div class="project-title">StatisticsAssignmentHelp.com – 100% Site Health Score</div>
+      <p class="project-desc">Improved the complete SEO health of StatisticsAssignmentHelp.com, resolving every error flagged by Ahrefs to achieve a perfect Site Health Score of 100%. Worked in close collaboration with the development team — independently fixing non-technical issues while providing clear, actionable guidance to developers for technical fixes.</p>
+      <div class="project-outcomes">
+        <span class="project-outcome">100% Site Health Score</span>
+        <span class="project-outcome">All Ahrefs Errors Resolved</span>
+        <span class="project-outcome">Dev Team Collaboration</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px;">
+        <div>
+          <div style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;">Independent Fixes</div>
+          <div class="project-tools">
+            <span class="project-tool">Broken Links</span>
+            <span class="project-tool">Redirect Chains</span>
+            <span class="project-tool">Duplicate Content</span>
+            <span class="project-tool">Meta Tags</span>
+            <span class="project-tool">Missing Alt Tags</span>
+            <span class="project-tool">Orphaned Pages</span>
+            <span class="project-tool">Image Optimisation</span>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--mid);margin-bottom:6px;">Developer Guidance</div>
+          <div class="project-tools">
+            <span class="project-tool">Page Load Speed</span>
+            <span class="project-tool">Mobile Friendliness</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-tools" style="margin-top:4px;">
+        <span class="project-tool">Ahrefs</span><span class="project-tool">Google Search Console</span><span class="project-tool">WordPress</span>
+      </div>
+    </div>
+
+    <div class="project-card animate">
+      <div class="project-tag">SEO Strategy · End-to-End</div>
+      <div class="project-title">LiveExamHelper.com – 12/12 Keywords Ranking #1 or #2</div>
+      <p class="project-desc">Managed the complete end-to-end SEO strategy and implementation for LiveExamHelper.com, an academic support platform. Responsibilities spanned On-Page SEO, Off-Page SEO, Technical SEO, Competitor Analysis, and Site Audits — all aimed at boosting organic visibility and achieving top rankings for competitive keywords in the education niche.</p>
+      <div class="project-outcomes">
+        <span class="project-outcome">12/12 Keywords Ranked #1 or #2</span>
+        <span class="project-outcome">Full SEO Ownership</span>
+        <span class="project-outcome">Education Niche</span>
+      </div>
+      <div style="margin-top:4px;">
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;">Top-Ranking Keywords</div>
+        <div class="project-tools">
+          <span class="project-tool">Take My Statistics Exam</span>
+          <span class="project-tool">Take My Accounting Exam</span>
+          <span class="project-tool">Take My Finance Exam</span>
+          <span class="project-tool">Take My Physics Exam</span>
+          <span class="project-tool">Take My Chemistry Exam</span>
+          <span class="project-tool">Take My Nursing Exam</span>
+          <span class="project-tool">Take My Economics Exam</span>
+          <span class="project-tool">Take My Math Exam</span>
+          <span class="project-tool">+ 4 more</span>
+        </div>
+      </div>
+      <div style="margin-top:4px;">
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--mid);margin-bottom:6px;">Scope of Work</div>
+        <div class="project-tools">
+          <span class="project-tool">On-Page SEO</span>
+          <span class="project-tool">Off-Page SEO</span>
+          <span class="project-tool">Technical SEO</span>
+          <span class="project-tool">Competitor Analysis</span>
+          <span class="project-tool">Site Audits</span>
+        </div>
+      </div>
+      <a href="https://liveexamhelper.com" target="_blank" rel="noopener" class="project-link">Visit Site ↗</a>
+    </div>
+
+    <div class="project-card animate">
+      <div class="project-tag">Local SEO · PR Management</div>
+      <div class="project-title">Dr Farhan Shikoh – Local SEO & Online Presence, Ranchi</div>
+      <p class="project-desc">Managed Local SEO and PR for Dr Farhan Shikoh, a Cardiologist based in Ranchi. Built and optimised his complete online presence — from Google Business Profile to social media and web reviews — to establish credibility, improve local search visibility, and attract more patients in the region.</p>
+      <div class="project-outcomes">
+        <span class="project-outcome">Local SEO</span>
+        <span class="project-outcome">PR Management</span>
+        <span class="project-outcome">Online Presence Built</span>
+      </div>
+      <div style="margin-top:4px;">
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;">Google Business Profile Optimisation</div>
+        <div class="project-tools">
+          <span class="project-tool">Reviews Management</span>
+          <span class="project-tool">Web Reviews</span>
+          <span class="project-tool">Social Profiles</span>
+          <span class="project-tool">Update Posts</span>
+          <span class="project-tool">Descriptions</span>
+        </div>
+      </div>
+      <div style="margin-top:4px;">
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--mid);margin-bottom:6px;">Tools & Channels</div>
+        <div class="project-tools">
+          <span class="project-tool">Google Business Profile</span>
+          <span class="project-tool">Local SEO</span>
+          <span class="project-tool">Reputation Management</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card animate">
+      <div class="project-tag">SEO · Multi-Site</div>
+      <div class="project-title">Other Websites Worked Upon</div>
+      <p class="project-desc">Delivered SEO results across multiple academic and assignment help platforms — driving top keyword rankings through targeted on-page optimisation, content strategy, and backlink building.</p>
+      <div style="display:flex;flex-direction:column;gap:14px;margin-top:4px;">
+        <div>
+          <a href="https://www.architectureassignmenthelp.com" target="_blank" rel="noopener" style="font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--ink);text-decoration:none;display:block;margin-bottom:5px;">architectureassignmenthelp.com ↗</a>
+          <div class="project-tools"><span class="project-tool">Architecture Assignment Help</span></div>
+        </div>
+        <div>
+          <a href="https://www.autocadassignmenthelp.com" target="_blank" rel="noopener" style="font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--ink);text-decoration:none;display:block;margin-bottom:5px;">autocadassignmenthelp.com ↗</a>
+          <div class="project-tools"><span class="project-tool">AutoCAD Assignment Help</span></div>
+        </div>
+        <div>
+          <a href="https://www.programminghomeworkhelp.com" target="_blank" rel="noopener" style="font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--ink);text-decoration:none;display:block;margin-bottom:5px;">programminghomeworkhelp.com ↗</a>
+          <div class="project-tools"><span class="project-tool">Programming Assignment Help</span><span class="project-tool">Programming Homework Help</span></div>
+        </div>
+        <div>
+          <a href="https://www.statisticsassignmenthelp.com" target="_blank" rel="noopener" style="font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--ink);text-decoration:none;display:block;margin-bottom:5px;">statisticsassignmenthelp.com ↗</a>
+          <div class="project-tools"><span class="project-tool">Statistics Assignment Help</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header animate"><span class="section-num">05</span><h2>Work <em>experience</em></h2></div>
+  <div class="exp-list">
+    <div class="exp-item animate">
+      <div class="exp-meta">
+        <div class="exp-date">Nov 2024 – Present</div>
+        <div class="exp-company">Freelance</div>
+        <div class="exp-location">Remote</div>
+      </div>
+      <div class="exp-content">
+        <div class="exp-title">Digital Marketing Specialist</div>
+        <ul class="exp-bullets">
+          <li>Optimised Google SERP and Marketplace presence for several <strong>e-Commerce clients globally</strong>, driving measurable ranking improvements.</li>
+          <li>Managed <strong>Google Business Profile &amp; Local SEO</strong> for clients in the Chhattisgarh region, improving local map pack visibility.</li>
+          <li>Complete SEO management for <strong>global academic platforms</strong> (architectureassignmenthelp.com, autocadassignmenthelp.com) — content, backlinks, and technical SEO.</li>
+          <li>Leveraged <strong>AI tools</strong> (ChatGPT, Gemini, SemRush AI, ElevenLabs, Invideo AI) to produce SEO-optimised content at scale.</li>
+          <li>Pioneered <strong>AEO (Answer Engine Optimisation)</strong> projects targeting featured snippets on ChatGPT and Gemini.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-item animate">
+      <div class="exp-meta">
+        <div class="exp-date">Nov 2023 – Nov 2024</div>
+        <div class="exp-company">Virtu Information Technologies Pvt. Ltd.</div>
+        <div class="exp-location">Ranchi</div>
+      </div>
+      <div class="exp-content">
+        <div class="exp-title">Digital Marketing Executive – SEO &amp; Social Media</div>
+        <ul class="exp-bullets">
+          <li>Conducted in-depth keyword research using <strong>Google Keyword Planner, Ahrefs, and SEMrush</strong> to identify high-intent keywords.</li>
+          <li>Improved <strong>organic traffic by 35%</strong> through on-page optimisation, content restructuring, and keyword targeting.</li>
+          <li>Optimised meta tags, headings, URLs, and internal linking across <strong>50+ web pages</strong>, increasing keyword rankings by <strong>40%</strong>.</li>
+          <li>Performed <strong>technical SEO audits</strong> — crawl errors, indexing issues, and page speed optimisation using Google Search Console.</li>
+          <li>Built <strong>50+ high-quality backlinks</strong> through outreach, guest posting, and directory submissions.</li>
+          <li>Monitored performance using <strong>Google Analytics &amp; Search Console</strong>, tracking KPIs: traffic, CTR, and bounce rate.</li>
+          <li>Planned and executed <strong>social media strategies</strong> across Instagram, Facebook, and LinkedIn to improve brand visibility.</li>
+          <li>Created and managed <strong>content calendars</strong>, ensuring consistent posting aligned with marketing goals and trending topics.</li>
+          <li>Assisted with <strong>Meta Ads</strong> — campaign structure, audience targeting, and metrics analysis (CPC, CTR).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" style="background: var(--paper);">
+  <div class="section-header animate"><span class="section-num">06</span><h2>Skills <em>&amp; tools</em></h2></div>
+  <div class="skills-masonry">
+    <div class="skill-block animate"><span class="skill-block-icon">📈</span><div class="skill-block-title">SEO</div><div class="skill-tags"><span>Keyword Research</span><span>On-Page SEO</span><span>Off-Page SEO</span><span>Technical SEO</span><span>Local SEO</span><span>AEO</span></div></div>
+    <div class="skill-block animate"><span class="skill-block-icon">🎯</span><div class="skill-block-title">Paid Advertising</div><div class="skill-tags"><span>Meta Ads</span><span>Google Ads</span><span>Audience Targeting</span><span>CPC/CTR Analysis</span><span>ROAS Optimisation</span></div></div>
+    <div class="skill-block animate"><span class="skill-block-icon">📱</span><div class="skill-block-title">Social Media</div><div class="skill-tags"><span>Instagram</span><span>Facebook</span><span>LinkedIn</span><span>Content Calendars</span><span>Engagement Strategy</span></div></div>
+    <div class="skill-block animate"><span class="skill-block-icon">🔬</span><div class="skill-block-title">Analytics &amp; Reporting</div><div class="skill-tags"><span>Google Analytics</span><span>Search Console</span><span>Ahrefs</span><span>SEMrush</span><span>KPI Tracking</span></div></div>
+    <div class="skill-block animate"><span class="skill-block-icon">🤖</span><div class="skill-block-title">AI Tools</div><div class="skill-tags"><span>ChatGPT</span><span>Gemini</span><span>Canva AI</span><span>SemRush AI</span><span>Invideo AI</span><span>ElevenLabs</span></div></div>
+    <div class="skill-block animate"><span class="skill-block-icon">🛠️</span><div class="skill-block-title">Platforms &amp; Dev</div><div class="skill-tags"><span>WordPress</span><span>Canva</span><span>HTML/CSS</span><span>Google Sheets</span><span>Microsoft Excel</span></div></div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section style="padding: 0;">
+  <div class="edu-block">
+    <div class="edu-left animate">
+      <div class="edu-label">Education</div>
+      <div class="edu-degree">B.Tech – Computer Science &amp; Engineering</div>
+      <div class="edu-school">Rungta College of Engineering &amp; Technology<br>Bhilai, Chhattisgarh</div>
+      <div class="edu-advantage">A CS background means I understand how websites are built — giving me an edge in technical SEO, site audits, and working directly with developers without a translator.</div>
+      <div class="edu-year">2024</div>
+    </div>
+    <div class="edu-right animate">
+      <div class="edu-right-title">Full Technology Stack</div>
+      <div class="ai-tools-list">
+        <span class="ai-tag">ChatGPT</span><span class="ai-tag">Google Gemini</span><span class="ai-tag">Canva AI</span>
+        <span class="ai-tag">SemRush AI</span><span class="ai-tag">Invideo AI</span><span class="ai-tag">ElevenLabs.io</span>
+        <span class="ai-tag">WordPress</span><span class="ai-tag">Google Analytics</span><span class="ai-tag">Ahrefs</span>
+        <span class="ai-tag">SEMrush</span><span class="ai-tag">Search Console</span><span class="ai-tag">Meta Business Suite</span>
+        <span class="ai-tag">Google Ads</span><span class="ai-tag">Canva</span><span class="ai-tag">HTML / CSS</span>
+        <span class="ai-tag">Microsoft Excel</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="animate">
+    <h2>Looking for someone who can improve rankings in 90 days?<br>Let's talk.</h2>
+    <div class="contact-links">
+      <a href="#" onclick="window.location.href='mailto:aniketkerketta23'+'@'+'gmail.com';return false;" class="contact-btn solid">Send Email</a>
+      <a href="tel:8305488536" class="contact-btn outline">+91 8305488536</a>
+      <a href="https://www.linkedin.com/in/aniketkerketta/" target="_blank" rel="noopener" class="contact-btn outline">LinkedIn</a>
+      <a href="https://wa.me/918305488536" target="_blank" rel="noopener" class="contact-btn whatsapp-btn">WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <span>&#169; 2026 Aniket Kerketta</span>
+  <span>Digital Marketing Executive · Delhi, India</span>
+</footer>
+
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+<script>
+/* Hamburger */
+var hamburger = document.getElementById('hamburger');
+var mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', function() {
+  hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+});
+function closeMobile() {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+}
+
+/* Nav scroll border */
+window.addEventListener('scroll', function() {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 10);
+  document.getElementById('backToTop').classList.toggle('visible', window.scrollY > 400);
+}, { passive: true });
+
+/* Back to top */
+document.getElementById('backToTop').addEventListener('click', function() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+/* Custom cursor – desktop only */
+if (window.matchMedia('(pointer: fine)').matches) {
+  var cursor = document.getElementById('cursor');
+  var ring = document.getElementById('cursorRing');
+  var mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', function(e) {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.transform = 'translate(' + (mx-5) + 'px,' + (my-5) + 'px)';
+  });
+  (function loop() {
+    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+    ring.style.transform = 'translate(' + (rx-18) + 'px,' + (ry-18) + 'px)';
+    requestAnimationFrame(loop);
+  })();
+  document.querySelectorAll('a, button').forEach(function(el) {
+    el.addEventListener('mouseenter', function() { ring.style.width='56px'; ring.style.height='56px'; });
+    el.addEventListener('mouseleave', function() { ring.style.width='36px'; ring.style.height='36px'; });
+  });
+}
+
+/* Skill card tap-to-expand on touch devices */
+if (window.matchMedia('(pointer: coarse)').matches) {
+  document.querySelectorAll('.skill-block').forEach(function(card) {
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', function() {
+      var isOpen = card.classList.contains('tapped');
+      document.querySelectorAll('.skill-block.tapped').forEach(function(c) {
+        c.classList.remove('tapped');
+      });
+      if (!isOpen) card.classList.add('tapped');
+    });
+  });
+}
+
+/* Active nav on scroll */
+var sections = document.querySelectorAll('section[id]');
+var navAs = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', function() {
+  var scrollY = window.scrollY + 120;
+  sections.forEach(function(sec) {
+    if (scrollY >= sec.offsetTop && scrollY < sec.offsetTop + sec.offsetHeight) {
+      navAs.forEach(function(a) {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + sec.id);
+      });
+    }
+  });
+}, { passive: true });
+
+/* Counter animation on metrics */
+function animateCounter(el, target, suffix) {
+  var start = 0;
+  var duration = 1200;
+  var step = Math.ceil(target / (duration / 16));
+  var timer = setInterval(function() {
+    start += step;
+    if (start >= target) { start = target; clearInterval(timer); }
+    el.innerHTML = start + '<span>' + suffix + '</span>';
+  }, 16);
+}
+var countersStarted = false;
+var counterObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting && !countersStarted) {
+      countersStarted = true;
+      var cards = document.querySelectorAll('.metric-num');
+      var data = [{v:35,s:'%'},{v:40,s:'%'},{v:50,s:'+'},{v:50,s:'+'}];
+      cards.forEach(function(card, i) {
+        if (data[i]) animateCounter(card, data[i].v, data[i].s);
+      });
+    }
+  });
+}, { threshold: 0.5 });
+var metricsGrid = document.querySelector('.metrics-grid');
+if (metricsGrid) counterObs.observe(metricsGrid);
+
+/* Metric card 3D tilt */
+if (window.matchMedia('(pointer: fine)').matches) {
+  document.querySelectorAll('.metric-card').forEach(function(card) {
+    card.addEventListener('mousemove', function(e) {
+      var rect = card.getBoundingClientRect();
+      var x = (e.clientX - rect.left) / rect.width - 0.5;
+      var y = (e.clientY - rect.top) / rect.height - 0.5;
+      card.style.transform = 'perspective(400px) rotateY(' + (x * 10) + 'deg) rotateX(' + (-y * 10) + 'deg) translateZ(6px)';
+    });
+    card.addEventListener('mouseleave', function() {
+      card.style.transform = '';
+    });
+  });
+}
+
+/* Scroll reveal */
+var obs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.animate').forEach(function(el) { obs.observe(el); });
+
+/* Also trigger for elements already in viewport on load */
+window.addEventListener('load', function() {
+  document.querySelectorAll('.animate').forEach(function(el) {
+    var rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight) {
+      el.classList.add('visible');
+    }
+  });
+});
+/* Screenshot zoom overlay */
+(function() {
+  var overlay = document.getElementById('imgZoomOverlay');
+  var img = document.getElementById('imgZoomImg');
+  var closeBtn = document.getElementById('imgZoomClose');
+
+  function openZoom(src, alt) {
+    img.src = src;
+    img.alt = alt || '';
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeZoom() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.work-serp-img').forEach(function(el) {
+    el.addEventListener('click', function() { openZoom(el.src, el.alt); });
+  });
+  closeBtn.addEventListener('click', closeZoom);
+  img.addEventListener('click', closeZoom);
+  overlay.addEventListener('click', function(e) { if (e.target === overlay) closeZoom(); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeZoom(); });
+})();
+</script>
